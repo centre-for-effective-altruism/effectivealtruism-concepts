@@ -143,7 +143,9 @@ function build (buildCount) {
       .use(_message.info('Added files to collections'))
       .use(checkSlugs())
       .use(create404())
-      .use(addChildren())
+      .use(addChildren({
+        filter: 'concepts/**'
+      }))
       .use(rebase([
         {
           pattern: 'pages/**/index.html',
