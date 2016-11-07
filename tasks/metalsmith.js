@@ -52,7 +52,7 @@ const layouts = require('metalsmith-layouts')
 const remapLayoutNames = require(paths.lib('metalsmith/plugins/remap-layout-names'))
 const shortcodes = require('metalsmith-shortcodes')
 const lazysizes = require('metalsmith-lazysizes')
-// const icons = require('metalsmith-icons')
+const icons = require('metalsmith-icons')
 const favicons = require(paths.lib('metalsmith/plugins/favicons'))
 message.status('Loaded layout plugins')
 // methods to inject into layouts / shortcodes
@@ -207,9 +207,9 @@ function build (buildCount) {
         cache: true
       }, layoutUtils)))
       .use(_message.info('Built HTML files from templates'))
-      // .use(icons({
-      //   fontDir: 'fonts',
-      // }))
+      .use(icons({
+        fontDir: 'fonts',
+      }))
       .use(_message.info('Added icon fonts'))
       .use(lazysizes({
         widths: [100, 480, 768, 992, 1200, 1800],
