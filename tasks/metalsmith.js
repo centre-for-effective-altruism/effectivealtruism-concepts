@@ -195,8 +195,9 @@ function build (buildCount) {
       }))
       .use(saveRawContents())
     if (process.env.NODE_ENV !== 'development') {
-      metalsmith.use(favicons('images/favicon.png'))
-      .use(_message.info('Created favicons'))
+      metalsmith
+        .use(favicons('images/favicon.png'))
+        .use(_message.info('Created favicons'))
     }
     metalsmith
       .use(layouts(Object.assign({
