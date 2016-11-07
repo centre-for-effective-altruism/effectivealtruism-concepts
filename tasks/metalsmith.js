@@ -188,7 +188,7 @@ function build (buildCount) {
       .use(shortcodes(shortcodeOpts))
       .use(_message.info('Converted Shortcodes'))
       .use(deleteFiles({
-        filter: '@(series|links)/**' 
+        filter: '@(series|links)/**'
       }))
       .use(saveRawContents())
       .use(layouts(Object.assign({
@@ -204,7 +204,7 @@ function build (buildCount) {
       .use(_message.info('Added icon fonts'))
       .use(lazysizes({
         widths: [100, 480, 768, 992, 1200, 1800],
-        qualities: [ 50, 70, 70, 70, 70, 70],
+        qualities: [50, 70, 70, 70, 70, 70],
         backgrounds: ['.card-thumbnail'],
         ignore: '/images/**',
         ignoreSelectors: '.content-block-content',
