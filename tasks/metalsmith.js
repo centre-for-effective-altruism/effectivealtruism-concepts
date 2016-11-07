@@ -208,7 +208,7 @@ function build (buildCount) {
       }, layoutUtils)))
       .use(_message.info('Built HTML files from templates'))
       .use(icons({
-        fontDir: 'fonts',
+        fontDir: 'fonts'
       }))
       .use(_message.info('Added icon fonts'))
       .use(lazysizes({
