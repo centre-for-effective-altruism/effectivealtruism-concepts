@@ -81,6 +81,7 @@ const collections = require('metalsmith-collections')
 const checkSlugs = require(paths.lib('metalsmith/plugins/check-slugs.js'))
 const excerpts = require('metalsmith-excerpts')
 const pagination = require('metalsmith-pagination')
+const createContentHierarchy = require(paths.lib('metalsmith/plugins/create-content-hierarchy.js'))
 const navigation = require('metalsmith-navigation')
 const create404 = require(paths.lib('metalsmith/plugins/create-404.js'))
 const rebase = require(paths.lib('metalsmith/plugins/rebase'))
@@ -134,6 +135,7 @@ function build (buildCount) {
       }))
       .use(_message.info('Downloaded content from Contentful'))
       .use(processContentfulMetadata())
+      .use(createContentfulFileIdMap())
       .use(remapLayoutNames())
       .use(_message.info('Processed Contentful metadata'))
       .use(collections(contentTypes.collections))
@@ -141,6 +143,7 @@ function build (buildCount) {
       .use(_message.info('Added files to collections'))
       .use(checkSlugs())
       .use(create404())
+      .use(createContentHierarchy())
       .use(rebase([
         {
           pattern: 'pages/**/index.html',
@@ -169,7 +172,6 @@ function build (buildCount) {
         }))
       )
       .use(_message.info('Added navigation metadata'))
-      .use(createContentfulFileIdMap())
       .use(createSeriesHierarchy())
       .use(_message.info('Built series hierarchy'))
       // Build HTML files
