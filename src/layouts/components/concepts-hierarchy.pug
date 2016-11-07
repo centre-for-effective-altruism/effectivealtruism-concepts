@@ -1,0 +1,16 @@
+mixin buildConceptTree(concept, depth, maxDepth)
+  if concept
+    li.concepts-hierarchy-concept(class= (depth===1 ? 'concepts-hierarcy-concept-apex-concept' : ''))
+      a.concepts-hierarchy-concept-name(href=concept.path)!= concept.title
+      if concept.children && concept.children.length && (maxDepth === 0 || depth < maxDepth) && depth < 100
+        ul.concepts-list(class=`concepts-hierarchy-list-depth-${depth+1}`)
+          each childConcept in concept.children
+            +buildConceptTree(childConcept, depth+1, maxDepth)
+
+mixin conceptsHierarchy(maxDepth)
+  - maxDepth = maxDepth || 0
+  if concepts
+    ul.concepts-hierarchy-list.concepts-hierarchy-list-depth-1
+      each concept in concepts
+        if !concept.parent
+          +buildConceptTree(concept, 1, maxDepth)

@@ -17,6 +17,13 @@
   margin: 0 0 5px 0;
 }
 
-.concept-hierarchy-navigation-child-concepts-list-concept {
-  margin-left: 15px;
+.concepts-hierarchy-concept {
+  margin-left: $grid-gutter-width/2;
+}
+.concepts-hierarcy-concept-apex-concept {
+  margin-left: 0;
+}
+
+.concepts-hierarcy-concept-apex-concept {
+  font-weight: $font-weight-bold;
 }
