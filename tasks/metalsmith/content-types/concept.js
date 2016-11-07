@@ -14,8 +14,5 @@ module.exports = {
     sort: 'title',
     reverse: false
   },
-  createPage: true,
-  pagination: {
-    perPage: 50
-  }
+  createPage: true
 }

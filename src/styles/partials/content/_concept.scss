@@ -1,0 +1,22 @@
+.concept-hierarchy-navigation {
+  border: 1px solid #CCC;
+  background: #EEE;
+  margin: 0;
+  padding: $grid-gutter-width/2; 
+}
+
+.concept-hierarchy-navigation-parent-concepts {
+  margin-bottom: $grid-gutter-width;
+}
+
+.concept-hierarchy-navigation-child-concepts {
+  margin-top: $grid-gutter-width;
+}
+
+.concept-hierarchy-navigation-title {
+  margin: 0 0 5px 0;
+}
+
+.concept-hierarchy-navigation-child-concepts-list-concept {
+  margin-left: 15px;
+}
