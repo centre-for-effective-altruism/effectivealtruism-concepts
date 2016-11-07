@@ -81,7 +81,7 @@ const collections = require('metalsmith-collections')
 const checkSlugs = require(paths.lib('metalsmith/plugins/check-slugs.js'))
 const excerpts = require('metalsmith-excerpts')
 const pagination = require('metalsmith-pagination')
-const createContentHierarchy = require(paths.lib('metalsmith/plugins/create-content-hierarchy.js'))
+const addChildren = require(paths.lib('metalsmith/plugins/add-children'))
 const navigation = require('metalsmith-navigation')
 const create404 = require(paths.lib('metalsmith/plugins/create-404.js'))
 const rebase = require(paths.lib('metalsmith/plugins/rebase'))
@@ -143,7 +143,7 @@ function build (buildCount) {
       .use(_message.info('Added files to collections'))
       .use(checkSlugs())
       .use(create404())
-      .use(createContentHierarchy())
+      .use(addChildren())
       .use(rebase([
         {
           pattern: 'pages/**/index.html',
