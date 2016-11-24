@@ -1,4 +1,5 @@
 // Schema for Concepts
+const DEFAULT_ORDER = 10
 module.exports = {
   name: {
     singular: 'Concept',
@@ -11,8 +12,14 @@ module.exports = {
   contentfulId: 'concept',
   contentfulFilenameField: 'fields.slug',
   collection: {
-    sort: 'title',
-    reverse: false
+    sort: (a, b) => {
+      // first sort by order field
+      const aOrder = a.order || DEFAULT_ORDER
+      const bOrder = b.order || DEFAULT_ORDER
+      if (aOrder !== bOrder) return aOrder - bOrder
+      // if the order is the same, sort by title instead
+      return a.title.localeCompare(b.title, 'en', {'sensitivity': 'base'})
+    }
   },
   createPage: true
 }
