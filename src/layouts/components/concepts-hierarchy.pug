@@ -1,10 +1,11 @@
 mixin buildConceptTree(concept, depth, maxDepth)
   if concept
     - var childrenToShow = concept.children && concept.children.length && (maxDepth === 0 || depth < maxDepth) && depth < 100
+    - var currentConcept = path && path === concept.path
     li.concepts-hierarchy-concept(class=[
       (depth===1 ? 'concepts-hierarcy-concept-apex-concept' : ''),
       (childrenToShow ? 'has-children' : ''),
-      (path && path === concept.path ? 'current-concept' : '')
+      (currentConcept ? 'current-concept' : '')
     ])
       if childrenToShow
         a.concepts-hierarchy-concept-toggle-children(href="#")
@@ -13,9 +14,12 @@ mixin buildConceptTree(concept, depth, maxDepth)
       i.fa.fa-file-text
       |  
       a.concepts-hierarchy-concept-name(href=concept.path)!= concept.title
-      if childrenToShow
-        |  
+      |  
+      if childrenToShow && !currentConcept
         span.child-concept-count (#{concept.children.length})
+      if currentConcept
+        span.current-concept-indicator (currently viewing)
+      if childrenToShow
         ul.concepts-list(class=`concepts-hierarchy-list-depth-${depth+1}`)
           each childConcept in concept.children
             +buildConceptTree(childConcept, depth+1, maxDepth)
@@ -32,7 +36,7 @@ mixin relatedConceptsHierarchy()
   ul.concepts-hierarchy-list.concepts-hierarchy-list-depth-1.related-concepts-hierarchy-list
     if parent
       - var parentFile = contentfulIDMap[parent.sys.id]
-      +buildConceptTree(parentFile, 1, 3)
+      +buildConceptTree(parentFile, 1, 0)
     else
       - var thisFile = contentfulIDMap[id]
-      +buildConceptTree(thisFile, 1, 2)
+      +buildConceptTree(thisFile, 1, 0)

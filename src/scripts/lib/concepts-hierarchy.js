@@ -4,6 +4,7 @@ var $ = require('jquery')
 $.fn.toggleState = function () {
   return this.each(function (index, element) {
     var el = $(element)
+    if (!el.hasClass('has-children')) return
     // toggle view state on parent
     el
       .toggleClass('children-hidden')
@@ -24,7 +25,10 @@ $(document).ready(function () {
     // uncollapse 'current concept' nodes
     var currentConcept = $('.current-concept')
     if (currentConcept.length) {
-      currentConcept.parents('.concepts-hierarchy-concept').toggleState()
+      currentConcept.parents('.concepts-hierarchy-concept')
+        .toggleState()
+        .children('.concepts-hierarchy-concept-toggle-children')
+          .remove()
       currentConcept.toggleState()
     }
     // click handler for toggle buttons

@@ -1,29 +1,13 @@
-.concept-hierarchy-navigation {
-  border: 1px solid #CCC;
-  background: #EEE;
-  margin: 0;
-  padding: $grid-gutter-width/2; 
+.related-concepts-title  {
+  margin-top: 0;
+  margin-bottom: $grid-gutter-width / 2;
+  small {
+    display: block;
+  }
 }
 
-.concept-hierarchy-navigation-parent-concepts {
-  margin-bottom: $grid-gutter-width;
+.related-concepts-back-to-map {
+  margin-bottom: $grid-gutter-width / 2;
+  display: inline-block;
 }
 
-.concept-hierarchy-navigation-child-concepts {
-  margin-top: $grid-gutter-width;
-}
-
-.concept-hierarchy-navigation-title {
-  margin: 0 0 5px 0;
-}
-
-.concepts-hierarchy-concept {
-  margin-left: $grid-gutter-width/2;
-  font-weight: $font-weight-normal;
-  font-family: $font-family-serif;
-}
-.concepts-hierarcy-concept-apex-concept {
-  margin-left: 0;
-  font-weight: $font-weight-bold;
-  font-family: $font-family-sans-serif;
-}

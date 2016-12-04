@@ -1,9 +1,49 @@
 $button-width: 30px;
 $button-margin-width: 5px;
 
+.concept-hierarchy-navigation {
+  border: 1px solid #CCC;
+  background: #EEE;
+  margin: 0;
+  padding: $grid-gutter-width/2; 
+}
+
+.concept-hierarchy-navigation-parent-concepts {
+  margin-bottom: $grid-gutter-width;
+}
+
+.concept-hierarchy-navigation-child-concepts {
+  margin-top: $grid-gutter-width;
+}
+
+.concept-hierarchy-navigation-title {
+  margin: 0 0 5px 0;
+}
+
+.concepts-hierarchy-concept {
+  margin-left: $grid-gutter-width/2;
+  font-weight: $font-weight-normal;
+  font-family: $font-family-serif;
+}
+.concepts-hierarcy-concept-apex-concept {
+  margin-left: 0;
+  font-weight: $font-weight-bold;
+  font-family: $font-family-sans-serif;
+}
 
 .concepts-hierarchy-list {
   padding-left: 0;
+  margin-left: -1 * $button-margin-width;
+}
+
+.current-concept {
+  font-weight: $font-weight-bold;
+}
+
+.current-concept-indicator {
+  font-weight: $font-weight-normal;
+  color: #999;
+  font-style: italic;
 }
 
 .concepts-hierarchy-concept {

@@ -4,7 +4,13 @@ extends ./page
 block preContent
 
 block postContent
+  hr
   .related-concepts
-    h2.related-concepts-title Related concepts:
+    h2.related-concepts-title 
+      small!= title
+      | Related concepts:
+    a.related-concepts-back-to-map(href="/concepts/")
+      i.fa.fa-arrow-left
+      |  Back to the Concept Map
     include ./components/concepts-hierarchy
     +relatedConceptsHierarchy()
