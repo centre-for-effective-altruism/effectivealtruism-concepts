@@ -147,7 +147,7 @@ function build (buildCount) {
       .use(checkSlugs())
       .use(create404())
       .use(addChildren({
-        filter: 'concepts/**'
+        collection: 'concepts'
       }))
       .use(rebase([
         {

@@ -1,5 +1,5 @@
 // Schema for Concepts
-const DEFAULT_ORDER = 10
+const DEFAULT_ORDER = 5
 module.exports = {
   name: {
     singular: 'Concept',
