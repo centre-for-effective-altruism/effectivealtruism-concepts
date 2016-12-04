@@ -1,23 +1,38 @@
 var $ = require('jquery')
 
-var conceptsHierarchy = $('.concepts-hierarchy-list')
-if (conceptsHierarchy.length) {
-  // collapse all non-apex nodes
-  conceptsHierarchy.find('ul.concepts-list').addClass('collapse')
-  var concepts = conceptsHierarchy.find('.concepts-hierarchy-concept.has-children')
-  concepts.addClass('children-hidden')
-
-  var toggleButtons = conceptsHierarchy.find('.concepts-hierarchy-concept-toggle-children')
-  toggleButtons.click(function (event) {
-    event.preventDefault()
-    var el = $(this)
+// function to toggle state of child elements
+$.fn.toggleState = function () {
+  return this.each(function (index, element) {
+    var el = $(element)
     // toggle view state on parent
-    var parent = el.parent('.concepts-hierarchy-concept')
-    parent
+    el
       .toggleClass('children-hidden')
       .toggleClass('children-shown')
-    parent.children('.concepts-list')
+    el.children('.concepts-list')
       .toggleClass('in')
   })
 }
+$(document).ready(function () {
+  // run the script on any concepts lists found on the page
+  var conceptsHierarchy = $('.concepts-hierarchy-list')
+  if (conceptsHierarchy.length) {
+    // collapse all non-apex nodes
+    conceptsHierarchy.find('ul.concepts-list').addClass('collapse')
+    var concepts = conceptsHierarchy.find('.concepts-hierarchy-concept.has-children')
+    concepts.addClass('children-hidden')
+
+    // uncollapse 'current concept' nodes
+    var currentConcept = $('.current-concept')
+    if (currentConcept.length) {
+      currentConcept.parents('.concepts-hierarchy-concept').toggleState()
+      currentConcept.toggleState()
+    }
+    // click handler for toggle buttons
+    var toggleButtons = conceptsHierarchy.find('.concepts-hierarchy-concept-toggle-children')
+    toggleButtons.click(function (event) {
+      event.preventDefault()
+      $(this).parent('.concepts-hierarchy-concept').toggleState()
+    })
+  }
+})
 

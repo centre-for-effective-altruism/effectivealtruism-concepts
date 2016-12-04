@@ -2,17 +2,9 @@ extends ./page
 
 
 block preContent
-  if parent
-    - var parentConcept = contentfulIDMap[parent.sys.id]
-    .concept-hierarchy-navigation.concept-hierarchy-navigation-parent-concepts
-      h3.concept-hierarchy-navigation-title.parent-concept-title Parent concept: 
-        a.parent-concept-link(href=parentConcept.path)!= parentConcept.title
 
 block postContent
-  if children && children.length
-    .concept-hierarchy-navigation.concept-hierarchy-navigation-child-concepts
-      h3.concept-hierarchy-navigation-title.child-concepts-title Child concepts:
-      ul.concept-hierarchy-navigation-child-concepts-list
-        each childConcept in children
-          li.concept-hierarchy-navigation-child-concepts-list-concept
-            a.child-concept-link(href=childConcept.path)!= childConcept.title
+  .related-concepts
+    h2.related-concepts-title Related concepts:
+    include ./components/concepts-hierarchy
+    +relatedConceptsHierarchy()
