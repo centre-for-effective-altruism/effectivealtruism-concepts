@@ -78,4 +78,5 @@ global.breakpoints = {
 require('./lib/main')
 require('./lib/analytics')
 require('./lib/footnotes')
+require('./lib/concepts-hierarchy')
 // require('./lib/newsletter')

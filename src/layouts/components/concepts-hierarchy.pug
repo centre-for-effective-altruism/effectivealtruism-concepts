@@ -1,8 +1,19 @@
 mixin buildConceptTree(concept, depth, maxDepth)
   if concept
-    li.concepts-hierarchy-concept(class= (depth===1 ? 'concepts-hierarcy-concept-apex-concept' : ''))
+    li.concepts-hierarchy-concept(class=[
+      (depth===1 ? 'concepts-hierarcy-concept-apex-concept' : ''),
+      (concept.children && concept.children.length ? 'has-children' : '')
+    ])
+      if concept.children && concept.children.length
+        a.concepts-hierarchy-concept-toggle-children(href="#")
+          i.fa.fa-plus
+          i.fa.fa-minus
+      i.fa.fa-file-text
+      |  
       a.concepts-hierarchy-concept-name(href=concept.path)!= concept.title
       if concept.children && concept.children.length && (maxDepth === 0 || depth < maxDepth) && depth < 100
+        |  
+        span.child-concept-count (#{concept.children.length})
         ul.concepts-list(class=`concepts-hierarchy-list-depth-${depth+1}`)
           each childConcept in concept.children
             +buildConceptTree(childConcept, depth+1, maxDepth)

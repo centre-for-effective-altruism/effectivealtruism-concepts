@@ -20,8 +20,10 @@
 .concepts-hierarchy-concept {
   margin-left: $grid-gutter-width/2;
   font-weight: $font-weight-normal;
+  font-family: $font-family-serif;
 }
 .concepts-hierarcy-concept-apex-concept {
   margin-left: 0;
   font-weight: $font-weight-bold;
+  font-family: $font-family-sans-serif;
 }

@@ -1,0 +1,57 @@
+$button-width: 30px;
+$button-margin-width: 5px;
+
+
+.concepts-hierarchy-list {
+  padding-left: 0;
+}
+
+.concepts-hierarchy-concept {
+  list-style: none;
+  padding-left: $button-width;
+  margin-left: 5px;
+  &.has-children {
+    padding-left: 0;
+  }
+  &.children-shown, &.children-hidden {
+    .concepts-hierarchy-concept-toggle-children {
+      display: inline-block;
+    }
+  }
+  &.children-shown > {
+    .concepts-hierarchy-concept-name {
+      font-weight: $font-weight-bold;
+      &:after {
+        content: ":";
+      }
+    }
+  }
+}
+
+.concepts-hierarchy-concept-toggle-children {
+  display: none;
+  margin-right: $button-margin-width;
+  width: $button-width - $button-margin-width;
+  .children-hidden > & > {
+    .icon-minus {
+      display: none;
+    }
+  }
+  .children-shown > & > {
+    .icon-plus {
+      display: none;
+    }
+  }
+}
+
+$concepts-list-border-width: $grid-gutter-width / 2;
+$concepts-list-border-color: #EEE;
+.concepts-list {
+    margin-bottom: $concepts-list-border-width;
+    border-left: $concepts-list-border-width solid $concepts-list-border-color;
+    padding: 0;
+    margin-left: $grid-gutter-width;
+    border-bottom-left-radius: $concepts-list-border-width;
+    border-bottom: 2px solid $concepts-list-border-color;
+    border-top: 2px solid $concepts-list-border-color;
+}
