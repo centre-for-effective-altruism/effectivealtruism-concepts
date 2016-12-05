@@ -16,7 +16,7 @@ mixin buildConceptTree(concept, depth, maxDepth)
       a.concepts-hierarchy-concept-name(href=concept.path)!= concept.title
       |  
       if childrenToShow && !currentConcept
-        span.child-concept-count&nbsp;(#{concept.children.length})
+        span.child-concept-count &nbsp;(#{concept.children.length})
       if currentConcept
         span.current-concept-indicator (currently&nbsp;viewing)
       if childrenToShow
