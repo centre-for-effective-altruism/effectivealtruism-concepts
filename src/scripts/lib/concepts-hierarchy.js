@@ -22,14 +22,21 @@ $(document).ready(function () {
     var concepts = conceptsHierarchy.find('.concepts-hierarchy-concept.has-children')
     concepts.addClass('children-hidden')
 
-    // uncollapse 'current concept' nodes
     var currentConcept = $('.current-concept')
     if (currentConcept.length) {
+      // uncollapse 'current concept' nodes
       currentConcept.parents('.concepts-hierarchy-concept')
         .toggleState()
         .children('.concepts-hierarchy-concept-toggle-children')
           .remove()
       currentConcept.toggleState()
+    } else {
+      // otherwise, uncollapse the first three levels
+      concepts.each(function (index, element) {
+        var el = $(this)
+        if (!el.hasClass('concepts-hierarcy-concept-apex-concept')) return
+        el.toggleState()
+      })
     }
     // click handler for toggle buttons
     var toggleButtons = conceptsHierarchy.find('.concepts-hierarchy-concept-toggle-children')
