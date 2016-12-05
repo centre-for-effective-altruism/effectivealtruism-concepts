@@ -27,10 +27,16 @@ mixin buildConceptTree(concept, depth, maxDepth)
 mixin conceptsHierarchy(maxDepth)
   - maxDepth = maxDepth || 0
   if concepts
-    ul.concepts-hierarchy-list.concepts-hierarchy-list-depth-1
-      each concept in concepts
-        if !concept.parent
-          +buildConceptTree(concept, 1, maxDepth)
+    .concepts-hierarchy-wrapper
+      .concepts-hierarchy-bulk-actions.right
+        a.btn.btn-default.concepts-hierarchy-expand-all.concepts-hierarchy-bulk-action-button(href="#") Expand all 
+          i.fa.fa-plus
+        a.btn.btn-default.concepts-hierarchy-collapse-all.concepts-hierarchy-bulk-action-button(href="#") Collapse all 
+          i.fa.fa-minus
+      ul.concepts-hierarchy-list.concepts-hierarchy-list-depth-1
+        each concept in concepts
+          if !concept.parent
+            +buildConceptTree(concept, 1, maxDepth)
 
 mixin relatedConceptsHierarchy()
   ul.concepts-hierarchy-list.concepts-hierarchy-list-depth-1.related-concepts-hierarchy-list

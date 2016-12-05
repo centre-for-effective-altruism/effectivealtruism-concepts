@@ -13,6 +13,27 @@ $.fn.toggleState = function () {
       .toggleClass('in')
   })
 }
+$.fn.setState = function (state) {
+  state = state === 'expand' ? 'expand' : 'collapse'
+  return this.each(function (index, element) {
+    var el = $(element)
+    if (!el.hasClass('has-children')) return
+    // set view state on parent
+    if (state === 'expand') {
+      el
+        .removeClass('children-hidden')
+        .addClass('children-shown')
+      el.children('.concepts-list')
+        .addClass('in')
+    } else {
+      el
+        .addClass('children-hidden')
+        .removeClass('children-shown')
+      el.children('.concepts-list')
+        .removeClass('in')
+    }
+  })
+}
 $(document).ready(function () {
   // run the script on any concepts lists found on the page
   var conceptsHierarchy = $('.concepts-hierarchy-list')
@@ -43,6 +64,17 @@ $(document).ready(function () {
     toggleButtons.click(function (event) {
       event.preventDefault()
       $(this).parent('.concepts-hierarchy-concept').toggleState()
+    })
+    // click handler for expand/collapse all
+    $('.concepts-hierarchy-expand-all').click(function (event) {
+      console.log('Expand all...')
+      event.preventDefault()
+      concepts.setState('expand')
+    })
+    $('.concepts-hierarchy-collapse-all').click(function (event) {
+      console.log('Collapse all...')
+      event.preventDefault()
+      concepts.setState('collapse')
     })
   }
 })

@@ -1,6 +1,10 @@
 $button-width: 30px;
 $button-margin-width: 5px;
 
+.concepts-hierarchy-bulk-actions {
+  text-align: right;
+}
+
 .concept-hierarchy-navigation {
   border: 1px solid #CCC;
   background: #EEE;
@@ -19,6 +23,7 @@ $button-margin-width: 5px;
 .concept-hierarchy-navigation-title {
   margin: 0 0 5px 0;
 }
+
 
 .concepts-hierarchy-concept {
   margin-left: $grid-gutter-width/2;
