@@ -31,8 +31,12 @@
 .navbar-header-brand-logo-wrapper {
 	$padding: 5px;
 	height: $navbar-height - (2 * $padding);
-	width: 340px;
+	width: 305px;
 	padding: $padding 0;
+	@media(max-width: 320px) {
+		width: 240px;
+		padding-top: 11px;
+	}
 }
 
 
