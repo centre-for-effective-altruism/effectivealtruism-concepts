@@ -40,11 +40,31 @@ const concat = require('metalsmith-concat')
 const branch = require('metalsmith-branch')
 message.status('Loaded utility plugins')
 // Markdown processing
-const markdown = require('metalsmith-markdownit')
+const MarkdownIt = require('metalsmith-markdownit')
 const MarkdownItAttrs = require('markdown-it-attrs')
 const MarkdownItFootnote = require('markdown-it-footnote')
 const MarkdownItSub = require('markdown-it-sub')
 const MarkdownItSup = require('markdown-it-sup')
+const MarkdownItIcon = require('markdown-it-icon')
+const markdown = new MarkdownIt({
+  breaks: true,
+  plugin: {
+    pattern: '**/*.html'
+  }
+})
+  .use(MarkdownItAttrs)
+  .use(MarkdownItFootnote)
+  .use(MarkdownItSub)
+  .use(MarkdownItSup)
+  .use(MarkdownItIcon)
+// add parser support for emoji/icons
+markdown.parser.renderer.rules.emoji = function(tokens, idx) {
+  const shortname = tokens[idx].markup
+  if (shortname.startsWith('fa-')) { // fontawesome
+    return '<i class="fa ' + shortname + '"></i>'
+  }
+  return ''
+}
 const htmlPostprocessing = require(paths.lib('metalsmith/plugins/html-postprocessing'))
 const sanitizeShortcodes = require(paths.lib('metalsmith/plugins/sanitize-shortcodes.js'))
 const saveRawContents = require(paths.lib('metalsmith/plugins/save-raw-contents'))
@@ -180,17 +200,7 @@ function build (buildCount) {
       .use(createSeriesHierarchy())
       .use(_message.info('Built series hierarchy'))
       // Build HTML files
-      .use(markdown({
-        breaks: true,
-        plugin: {
-          pattern: '**/*.html'
-        }
-      })
-        .use(MarkdownItAttrs)
-        .use(MarkdownItFootnote)
-        .use(MarkdownItSub)
-        .use(MarkdownItSup)
-      )
+      .use(markdown)
       .use(_message.info('Converted Markdown to HTML'))
       .use(htmlPostprocessing())
       .use(sanitizeShortcodes())
