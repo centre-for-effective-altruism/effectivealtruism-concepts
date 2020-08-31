@@ -17,7 +17,7 @@
     "start": "npm run styles && npm run scripts && node ./tasks/server.js"
   },
   "engines": {
-    "node": "6.1.0"
+    "node": "^12.14"
   },
   "repository": {
     "type": "git",
@@ -63,7 +63,7 @@
     "metalsmith-branch": "0.0.4",
     "metalsmith-clean-css": "^5.0.0",
     "metalsmith-collections": "^0.7.0",
-    "metalsmith-concat": "^6.0.0",
+    "metalsmith-concat": "7.0.0",
     "metalsmith-copy": "github:mattwidmann/metalsmith-copy",
     "metalsmith-excerpts": "^1.1.0",
     "metalsmith-feed": "^0.2.0",
@@ -88,7 +88,7 @@
     "moment": "^2.15.0",
     "ncp": "^2.0.0",
     "needle": "^1.1.2",
-    "node-sass": "^3.10.0",
+    "node-sass": "^4.14.1",
     "numeral": "^1.5.3",
     "pad-number": "0.0.4",
     "pluralize": "^3.0.0",
@@ -114,7 +114,6 @@
   "devDependencies": {
     "cache-require-paths": "^0.3.0",
     "glob-watcher": "^3.0.0",
-    "livereload": "^0.5.0",
     "metalsmith-changed": "^3.0.0",
     "node-static": "^0.7.8",
     "time-require": "^0.1.2"
